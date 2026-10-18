@@ -2,11 +2,27 @@
     "version": 2,
     "builds": [
         {
+            "src": "public/**",
+            "use": "@vercel/static"
+        },
+        {
             "src": "index.js",
             "use": "@vercel/node"
         }
     ],
     "routes": [
+        {
+            "src": "/style.css",
+            "dest": "/public/style.css"
+        },
+        {
+            "src": "/show.css",
+            "dest": "/public/show.css"
+        },
+        {
+            "src": "/form.css",
+            "dest": "/public/form.css"
+        },
         {
             "src": "/(.*)",
             "dest": "index.js"

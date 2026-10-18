@@ -63,6 +63,12 @@ app.delete('/posts/:postid', (req, res) => {
     res.redirect('/posts');
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+// Export for Vercel serverless
+module.exports = app;
+
+// Listen locally when not on Vercel
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(port, () => {
+        console.log(`Server is running on http://localhost:${port}`);
+    });
+}
