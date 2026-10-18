@@ -52,6 +52,11 @@ app.get('/posts/:postid', (req, res) => {
     res.render('show.ejs', { post });
 });
 
+app.get('/posts/:postid/edit', (req, res) => {
+    let { postid } = req.params;
+    let post = posts.find(p => p.id === postid);
+    res.render('edit.ejs', { post });
+});
 
 app.patch('/posts/:postid', (req, res) => {
     let { postid } = req.params;
