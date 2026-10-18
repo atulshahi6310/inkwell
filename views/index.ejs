@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inkwell — Where Stories Live</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <!-- ── NAV ── -->
+    <nav class="nav">
+        <a href="/posts" class="nav-brand">
+            <div class="brand-icon">✒</div>
+            <span class="brand-name">Ink<span>well</span></span>
+        </a>
+        <div class="nav-right">
+            <a href="/posts/new" class="btn btn-primary">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="12" y1="5" x2="12" y2="19" />
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+                New Story
+            </a>
+        </div>
+    </nav>
+
+    <!-- ── HERO ── -->
+    <section class="hero">
+        <div class="hero-tag">✦ Your Personal Journal</div>
+        <h1>Thoughts worth<br><em>sharing</em></h1>
+        <p>Write, edit, and publish your stories in one beautiful place.&nbsp;Every word matters.</p>
+    </section>
+
+    <!-- ── POSTS ── -->
+    <main class="posts-section">
+        <div class="section-header">
+            <h2 class="section-title">Latest Stories</h2>
+            <span class="post-count">
+                <%= posts.length %> post<%= posts.length !==1 ? 's' : '' %>
+            </span>
+        </div>
+
+        <% if (posts.length===0) { %>
+            <div class="empty-state">
+                <span class="empty-icon">📝</span>
+                <p>No stories yet. Be the first to write one.</p>
+                <a href="/posts/new" class="btn btn-primary">Write Now</a>
+            </div>
+            <% } %>
+
+                <% for (let post of posts) { %>
+                    <article class="card">
+                        <div class="card-body">
+                            <div class="card-author">
+                                <div class="avatar">
+                                    <%= post.username.charAt(0) %>
+                                </div>
+                                <span class="author-name">
+                                    <%= post.username %>
+                                </span>
+                            </div>
+                            <p class="card-content">
+                                <%= post.content %>
+                            </p>
+                            <span class="card-meta">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <polyline points="12 6 12 12 16 14" />
+                                </svg>
+                                <%= post.timestamp %>
+                            </span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="/posts/<%= post.id %>" class="btn btn-secondary">Read</a>
+                            <a href="/posts/<%= post.id %>/edit" class="btn btn-secondary">Edit</a>
+                        </div>
+                    </article>
+                    <% } %>
+    </main>
+
+    <!-- ── FOOTER ── -->
+    <footer class="footer">
+        Made with ♥ &nbsp;|&nbsp; <span>Inkwell</span> &copy; <%= new Date().getFullYear() %>
+    </footer>
+
+</body>
+
+</html>

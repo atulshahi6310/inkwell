@@ -1,0 +1,204 @@
+/* ===========================
+   INKWELL — show.css
+   Single Post View
+   =========================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Inter:wght@400;500;600&display=swap');
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --amber: #DB9558;
+    --cream: #FCF9EA;
+    --sage: #97A87A;
+    --muted: #A8BBA3;
+    --dark: #2C2416;
+    --mid: #5C4A2A;
+    --light: #F5F0E0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: clamp(30px, 6vw, 70px) clamp(16px, 4vw, 40px);
+}
+
+/* back link */
+.back-link {
+    align-self: flex-start;
+    margin-bottom: 28px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.18s;
+}
+
+.back-link:hover {
+    color: var(--amber);
+}
+
+/* article card */
+.post {
+    width: min(100%, 720px);
+    background: #fff;
+    border: 1.5px solid rgba(168, 187, 163, 0.30);
+    border-radius: 18px;
+    padding: clamp(28px, 6vw, 52px);
+    box-shadow: 0 8px 40px rgba(44, 36, 22, 0.10);
+    position: relative;
+    overflow: hidden;
+}
+
+.post::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--amber), var(--sage));
+}
+
+/* ID badge */
+.post-id-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: rgba(168, 187, 163, 0.15);
+    border: 1px solid rgba(168, 187, 163, 0.35);
+    color: var(--muted);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+/* author row */
+.author-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.avatar-lg {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--amber), var(--sage));
+    display: grid;
+    place-items: center;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    text-transform: uppercase;
+    box-shadow: 0 3px 12px rgba(219, 149, 88, 0.30);
+}
+
+.author-info .author-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--dark);
+}
+
+/* content */
+.post-content {
+    font-size: 1.08rem;
+    line-height: 1.85;
+    color: #3a3020;
+    white-space: pre-wrap;
+    margin-bottom: 32px;
+    border-top: 1px solid rgba(168, 187, 163, 0.25);
+    padding-top: 22px;
+}
+
+/* timestamp */
+.post-meta {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.82rem;
+    color: var(--muted);
+    padding-top: 18px;
+    border-top: 1px solid rgba(168, 187, 163, 0.25);
+}
+
+/* actions */
+.post-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 22px;
+    border-radius: 999px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.22s ease;
+    text-decoration: none;
+    border: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--amber) 0%, #c87c3a 100%);
+    color: #fff;
+    box-shadow: 0 3px 14px rgba(219, 149, 88, 0.35);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(219, 149, 88, 0.45);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--mid);
+    border: 1.5px solid var(--muted);
+}
+
+.btn-outline:hover {
+    background: var(--light);
+    border-color: var(--amber);
+    color: var(--amber);
+}
+
+@media (max-width: 480px) {
+    .post {
+        border-radius: 14px;
+    }
+
+    .post-actions {
+        flex-direction: column;
+    }
+
+    .btn {
+        justify-content: center;
+    }
+}
