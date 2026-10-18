@@ -7,7 +7,7 @@ const methodOverride = require('method-override');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(methodOverride('_method'));
+app.use(methodOverride('_method')); 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -48,24 +48,20 @@ app.get('/posts/:postid', (req, res) => {
     res.render('show.ejs', { post });
 });
 
-app.patch('/posts/:postid', (req, res) => { 
+
+app.patch('/posts/:postid', (req, res) => {
     let { postid } = req.params;
     let newContent = req.body.content;
     let post = posts.find(p => p.id === postid);
     post.content = newContent;
-    console.log(post)
-   res.redirect('/posts');
-
-})
-
-
-app.get('/posts/:postid/edit', (req, res) => {
-    let { postid } = req.params;
-    let post = posts.find(p => p.id === postid);
-    res.render('edit.ejs', { post });
-    
+    res.redirect('/posts');
 });
 
+app.delete('/posts/:postid', (req, res) => {
+    let { postid } = req.params;
+    posts = posts.filter(p => p.id !== postid);
+    res.redirect('/posts');
+});
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

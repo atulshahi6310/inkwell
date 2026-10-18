@@ -56,6 +56,9 @@
                 Edit Story
             </a>
             <a href="/posts" class="btn btn-outline">All Stories</a>
+            <form action="/posts/<%= post.id %>?_method=DELETE" method="POST" style="display:inline;">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
         </div>
     </article>
 
