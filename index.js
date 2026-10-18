@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const path = require('path');
-const { v4 : uuidv4 } = require('uuid');
+const { randomUUID } = require('crypto');
 const methodOverride = require('method-override');
 
 app.use(express.urlencoded({ extended: true }));
@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 let posts = [
     {
-        id: uuidv4(),
+        id: randomUUID(),
         username: 'John Doe',
         content: 'This is my first post!',
         timestamp: new Date().toLocaleString()
@@ -32,7 +32,7 @@ app.get('/posts/new', (req, res) => {
 app.post('/post',(req,res)=>{
     let {username, content} = req.body;
     let newPost = {
-        id: uuidv4(),
+        id: randomUUID(),
         username,
         content,
         timestamp: new Date().toLocaleString()
